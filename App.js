@@ -37,7 +37,7 @@ export default class App extends Component {
         <Header title={"  name    volume  amount "} />
         <ScrollView>
           {data.map(item => (
-            <ImageCard data={item}/>
+            <ImageCard data={item} key={item.name} />
           ))}
         </ScrollView>
       </View>

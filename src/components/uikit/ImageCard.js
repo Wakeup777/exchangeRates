@@ -15,7 +15,7 @@ const ImageCard = ({data}) => {
         <Text style={h1}>{volume}</Text>
       </View>
       <View style={{flex: 2}}>
-        <Text style={h1}>{price.amount}</Text>
+        <Text style={h1}>{price.amount.toFixed(1)}</Text>
       </View>
     </View>
   );
