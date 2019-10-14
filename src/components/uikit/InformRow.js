@@ -14,7 +14,7 @@ const InformRow = ({ data }) => {
         <Text style={h1}>{volume}</Text>
       </View>
       <View style={{ flex: 3 }}>
-        <Text style={h1}>{price.amount.toFixed(1)}</Text>
+        <Text style={h1}>{price.amount.toFixed(2)}</Text>
       </View>
     </View>
   );
@@ -24,10 +24,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 20,
+    paddingTop: 15,
     height: 50,
     backgroundColor: '#c1ecf4',
-    //borderRadius:50,
+    shadowColor: '#1e21f4',
+    shadowOffset: { wight: 1, height:2  },
+    shadowOpacity: 0.3,
+
+
   },
   h1: {
     fontSize: 20,
