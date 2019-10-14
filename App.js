@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {View, ScrollView,Text} from 'react-native';
-import {Header, ImageCard, Layout} from './src/components/uikit';
-import {url} from './constants';
+import React, { Component } from 'react'
+import { ScrollView, View } from 'react-native'
+import { Header, InformRow, TopRow } from './src/components/uikit'
+import { url } from './constants'
 
 export default class App extends Component {
   state = {
@@ -29,16 +29,16 @@ export default class App extends Component {
   render() {
 
     const {title, as_of,data} = this.state;
-    console.log('stock12',data)
-    console.log('state12',this.state)
     return (
       <View>
         <Header title={this.state.title} />
-        <Header title={"  name    volume  amount "} />
-        <ScrollView>
+        <TopRow />
+        <ScrollView style={{ backgroundColor: '#c1ecf4'}}>
+          <View style={{marginBottom:150}}>
           {data.map(item => (
-            <ImageCard data={item} key={item.name} />
+            <InformRow data={item} key={item.name} />
           ))}
+          </View>
         </ScrollView>
       </View>
     );

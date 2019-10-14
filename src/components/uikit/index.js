@@ -1,3 +1,3 @@
 export * from './Header'
-export * from './ImageCard'
-export * from './Layout.js'
+export * from './InformRow'
+export * from './TopRow'

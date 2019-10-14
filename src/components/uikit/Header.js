@@ -1,7 +1,7 @@
 // import
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {ifIphoneX} from 'react-native-iphone-x-helper';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 // body
 
@@ -19,10 +19,9 @@ const Header = ({title}) => {
 
 const styles = StyleSheet.create({
   viewStyle: {
-
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#498ff4',
+    backgroundColor: '#45a0f4',
     //paddingLeft: 22,
     paddingTop: 10,
     shadowColor: '#000',
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 2,
     position: 'relative',
-   ...ifIphoneX(
+    ...ifIphoneX(
       {
         height: 80,
         paddingTop: 30,
@@ -46,18 +45,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textStyle: {
-
     textAlign: 'center',
     color: 'white',
     margin: 10,
     ...ifIphoneX(
-        {
-          fontSize: 28,
-        },
-        {
-          fontSize: 18,
-        },),
-
+      {
+        fontSize: 28,
+      },
+      {
+        fontSize: 18,
+      },
+    ),
   },
 });
 
