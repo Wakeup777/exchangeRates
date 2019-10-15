@@ -4,7 +4,6 @@ import { StyleSheet, Text, View } from 'react-native'
 const InformRow = ({ data }) => {
 	const { h1, h2, container } = styles
 	const { name, volume, price } = data
-	console.log(name)
 	return (
 		<View style={container}>
 			<View style={{ flex: 4 }}>
