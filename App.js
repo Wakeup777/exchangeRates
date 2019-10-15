@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, View, } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { Header, InformRow, TopRow } from './src/components/uikit'
 import { url } from './constants'
 
-function wait(timeout) {
-	return new Promise(resolve => {
-		setTimeout(resolve, timeout);
-	});
-}
 export default class App extends Component {
 	state = {
 		title: 'Exchnge Rates',
@@ -21,26 +16,41 @@ export default class App extends Component {
 			const data1 = await response.json()
 			const data = data1.stock
 			this.setState({ data })
+			const as_of = data1.as_of
+			this.setState({ as_of })
+
 		} catch (e) {
 			throw e
 		}
 	}
 
 	render () {
-
-		const { title, data } = this.state
+		const { viewStyle, viewStyleSecond } = styles
+		const { title, data, as_of } = this.state
 		return (
-			<View style={{ backgroundColor: '#c1ecf4'  }}>
+			<View style={viewStyle}>
 				<Header title={title}/>
 				<TopRow/>
 				<ScrollView >
-					<View style={{ marginBottom: 150 }}>
+					<View style={viewStyleSecond}>
 						{data.map(item => (
 							<InformRow data={item} key={item.name}/>
 						))}
 					</View>
 				</ScrollView>
+
 			</View>
+
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	viewStyle: {
+		backgroundColor: '#999',
+		height: 820,
+	},
+	viewStyleSecond: {
+		marginBottom: 250,
+	},
+})
