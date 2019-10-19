@@ -8,7 +8,9 @@ export default class App extends Component {
 		title: 'Exchnge Rates',
 		as_of: '',
 		data: [],
+
 	}
+
 
 	componentDidMount = async () => {
 		try {
