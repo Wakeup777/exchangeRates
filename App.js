@@ -37,7 +37,7 @@ export default class App extends Component {
 		} catch (e) {
 			throw e
 		}
-		this.timerID = setInterval(() => this.reFresh(), 3000)
+		this.timerID = setInterval(() => this.reFresh(), 50000)
 	}
 
 	componentWillUnmount () {
@@ -131,3 +131,4 @@ const styles = StyleSheet.create({
 	},
 	viewStyleSecond: {},
 })
+
