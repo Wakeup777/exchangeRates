@@ -9,7 +9,7 @@ const Header = ({ title }) => {
 	const { viewStyle, textStyle } = styles
 	return (
 		<View style={viewStyle}>
-			<Text style={textStyle}>{title}</Text>
+			<Text style={textStyle}>{title.toUpperCase()}</Text>
 		</View>
 	)
 }
