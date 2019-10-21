@@ -15,8 +15,6 @@ const TopRow = () => {
 			<View style={{ flex: 3 }}>
 				<Text style={textStyle}>AMOUNT</Text>
 			</View>
-
-
 		</View>
 	)
 }
@@ -32,7 +30,6 @@ const styles = StyleSheet.create({
 			shadowOpacity: 0.2,
 			elevation: 2,
 			position: 'relative',
-
 			...ifIphoneX(
 				{
 					height: 40,
@@ -41,15 +38,11 @@ const styles = StyleSheet.create({
 					height: 30,
 				},
 			),
-
 		},
-
 		textStyle: {
 			textAlign: 'center',
 			color: 'white',
-
 			fontSize: 20,
-
 		},
 	},
 )

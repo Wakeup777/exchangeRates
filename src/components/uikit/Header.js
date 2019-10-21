@@ -1,9 +1,7 @@
-// import
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 
-// body
 
 const Header = ({ title }) => {
 	const { viewStyle, textStyle } = styles
@@ -13,16 +11,12 @@ const Header = ({ title }) => {
 		</View>
 	)
 }
-// export
-
-//style
 
 const styles = StyleSheet.create({
 	viewStyle: {
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#45a0f4',
-		//paddingLeft: 22,
 		paddingTop: 10,
 		shadowColor: '#000',
 		shadowOffset: { wight: 0, height: 2 },
@@ -39,10 +33,6 @@ const styles = StyleSheet.create({
 				paddingTop: 12,
 			},
 		),
-	},
-	boxStyle: {
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	textStyle: {
 		textAlign: 'center',
