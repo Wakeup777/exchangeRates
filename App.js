@@ -1,18 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   ActivityIndicator,
   Button,
   ScrollView,
   StyleSheet,
   View,
-} from 'react-native';
-import {Header, InformRow, TopRow, BottomButton} from './src/components/uikit';
-import {url} from './constants';
+} from 'react-native'
+import { ColorCode, Header, InformRow, TopRow } from './src/components/uikit'
+import { url } from './constants'
 
 export default class App extends Component {
   state = {
     title: 'Exchnge Rates',
-    as_of: '',
     data: [],
     isLoading: true,
     ColorHolder: '#00BCD4',
@@ -24,14 +23,13 @@ export default class App extends Component {
       const data1 = await response.json();
 
       this.setState({
-        as_of: data1.as_of,
         data: data1.stock,
         isLoading: false,
       });
     } catch (e) {
       throw e;
     }
-    this.timerID = setInterval(() => this.reFresh(), 10000);
+    this.timerID = setInterval(() => this.reFresh(), 5000)
   };
 
   componentWillUnmount() {
@@ -39,18 +37,11 @@ export default class App extends Component {
   }
 
   ChangeColorFunction = () => {
-    var ColorCode =
-      'rgb(' +
-      Math.floor(Math.random() * 256) +
-      ',' +
-      Math.floor(Math.random() * 256) +
-      ',' +
-      Math.floor(Math.random() * 256) +
-      ')';
     this.setState({
-      ColorHolder: ColorCode,
+      ColorHolder: ColorCode(),
     });
   };
+
   reFresh = async () => {
     try {
       const response = await fetch(url);
@@ -71,18 +62,12 @@ export default class App extends Component {
   };
 
   render() {
-    const {viewStyle, viewStyleSecond} = styles;
-    const {title, data, as_of, isLoading, ColorHolder} = this.state;
+    const { viewLoading, viewStyle, viewStyleSecond } = styles
+    const { title, data, isLoading } = this.state
 
     if (isLoading) {
       return (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: 'silver',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+        <View style={viewLoading}>
           <ActivityIndicator size="large" color="white" />
         </View>
       );
@@ -93,7 +78,7 @@ export default class App extends Component {
           <Header title={title} />
           <TopRow />
           <ScrollView>
-            <View style={viewStyleSecond}>
+            <View>
               {data.map(item => (
                 <InformRow data={item} key={item.name} />
               ))}
@@ -101,11 +86,7 @@ export default class App extends Component {
           </ScrollView>
         </View>
         <View
-          style={{
-            backgroundColor: ColorHolder,
-            flex: 1,
-            justifyContent: 'flex-start',
-          }}>
+          style={viewStyleSecond}>
           <Button
             title={'Refresh now'}
             large
@@ -113,17 +94,25 @@ export default class App extends Component {
             onPress={this.reFresh}
           />
         </View>
-        <BottomButton ColorHolder={ColorHolder} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  viewLoading: {
+    flex: 1,
+    backgroundColor: 'silver',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   viewStyle: {
     flex: 15,
     backgroundColor: '#999',
-    // height: 820,
   },
-  viewStyleSecond: {},
+  viewStyleSecond: {
+    backgroundColor: this.stateColorHolder,
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
 });
