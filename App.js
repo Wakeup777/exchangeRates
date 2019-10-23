@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   ActivityIndicator,
+  Alert,
   Button,
   ScrollView,
   StyleSheet,
@@ -14,22 +15,24 @@ export default class App extends Component {
     title: 'Exchnge Rates',
     data: [],
     isLoading: true,
-    ColorHolder: '#00BCD4',
+    colorHolder: '#00BCD4',
   };
 
   componentDidMount = async () => {
     try {
       const response = await fetch(url);
       const data1 = await response.json();
-
       this.setState({
         data: data1.stock,
         isLoading: false,
       });
     } catch (e) {
-      throw e;
+      Alert.alert('network connection failed')
+      console.log(e.name)
+      console.log(e.message)
+      console.log(e.stack)
     }
-    this.timerID = setInterval(() => this.reFresh(), 5000)
+    this.timerID = setInterval(() => this.reFresh(), 10000)
   };
 
   componentWillUnmount() {
@@ -38,15 +41,15 @@ export default class App extends Component {
 
   ChangeColorFunction = () => {
     this.setState({
-      ColorHolder: ColorCode(),
+      colorHolder: ColorCode(),
     });
   };
 
   reFresh = async () => {
     try {
+      //Alert.alert('second')
       const response = await fetch(url);
       const data1 = await response.json();
-
       this.setState((state, props) => {
         return {
           as_of: data1.as_of,
@@ -55,15 +58,17 @@ export default class App extends Component {
         };
       });
       this.ChangeColorFunction();
-      //Alert.alert('refreshing')
     } catch (e) {
-      throw e;
+      Alert.alert('network connection failed')
+      console.log(e.name)
+      console.log(e.message)
+      console.log(e.stack)
     }
   };
 
   render() {
-    const { viewLoading, viewStyle, viewStyleSecond } = styles
-    const { title, data, isLoading } = this.state
+    const { viewLoading, viewStyle } = styles
+    const { title, data, isLoading, colorHolder } = this.state
 
     if (isLoading) {
       return (
@@ -86,7 +91,11 @@ export default class App extends Component {
           </ScrollView>
         </View>
         <View
-          style={viewStyleSecond}>
+          style={{
+            backgroundColor: colorHolder,
+            flex: 1,
+            justifyContent: 'flex-start',
+          }}>
           <Button
             title={'Refresh now'}
             large
@@ -109,10 +118,5 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex: 15,
     backgroundColor: '#999',
-  },
-  viewStyleSecond: {
-    backgroundColor: this.stateColorHolder,
-    flex: 1,
-    justifyContent: 'flex-start',
   },
 });
